@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Extractor</h1>
+        <form method="post" action="/">
+            <input type="text" name="youtube_url" placeholder="Enter YouTube URL" required>
+            <button type="submit">Extract Recipe</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <h2>Recipe Details</h2>
+            <pre>{{ result | tojson(indent=4) }}</pre>
+        </div>
+        {% elif error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
